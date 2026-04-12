@@ -1,0 +1,17 @@
+// Markdown format for math500 task
+// Structure: ## Reasoning\n...\n\n## Answer\n...
+
+start: reasoning_section _WS? answer_section _WS?
+
+reasoning_section: "## Reasoning" _WS? text
+answer_section: "## Answer" _WS? text
+
+// Text content - lines that don't start with ## (section marker)
+text: line+
+line: /[^#\n][^\n]*\n?/      // Line starting with non-# char (trailing newline optional)
+    | /#[^#\n][^\n]*\n?/     // Line starting with single # (not ##)
+    | /#\n/                   // Just # on a line
+    | /\n/                    // Empty line
+
+// Whitespace
+_WS: /[ \t\n]+/

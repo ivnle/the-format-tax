@@ -1,0 +1,5 @@
+## Reasoning
+Three people — Alice, Bob, Carol — live in houses 1, 2, and 3 from left to right. Clue 1: Bob lives in house 1. Clue 2: Carol is directly to the right of Alice. From Clue 1, Bob is in house 1. That leaves Alice and Carol for houses 2 and 3. Clue 2 requires Carol to be one house right of Alice, so Alice is in house 2 and Carol is in house 3. The person in house 3 is Carol, which matches option C.
+
+## Answer
+C

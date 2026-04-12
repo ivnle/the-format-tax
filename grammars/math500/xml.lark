@@ -1,0 +1,13 @@
+// XML format for math500 task
+// Structure: <response><reasoning>...</reasoning><answer>...</answer></response>
+
+start: "<response>" _WS? reasoning _WS? answer _WS? "</response>" _WS?
+
+reasoning: "<reasoning>" text "</reasoning>"
+answer: "<answer>" text "</answer>"
+
+// Text content (no < or > allowed)
+text: /[^<>]+/
+
+// Whitespace
+_WS: /[ \t\n]+/

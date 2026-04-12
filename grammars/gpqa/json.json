@@ -1,0 +1,22 @@
+{
+  "description": "JSON schema for GPQA problems.",
+  "properties": {
+    "reasoning": {
+      "description": "Step-by-step scientific reasoning",
+      "title": "Reasoning",
+      "type": "string"
+    },
+    "answer": {
+      "description": "Letter choice (A, B, C, or D)",
+      "pattern": "^[A-D]$",
+      "title": "Answer",
+      "type": "string"
+    }
+  },
+  "required": [
+    "reasoning",
+    "answer"
+  ],
+  "title": "GPQASchema",
+  "type": "object"
+}

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+
+# Results (keep .gitkeep and shipped reference artifacts)
+results/*.json
+!results/reference_*.json
+results/*.jsonl
+results/*.json.jsonl
+results/.judge_cache.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# WritingBench staging (forthcoming)
+dev/_writingbench_staging/
+data/
+.env
+.env.*

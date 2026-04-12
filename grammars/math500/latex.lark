@@ -1,0 +1,57 @@
+// LaTeX format for math500 task (simple complexity)
+// Structure: Full compilable document with \reasoning{...} and \answer{...}
+
+start: _WS? preamble _WS? document _WS?
+
+// Preamble: documentclass and optional packages
+preamble: documentclass preamble_content*
+
+documentclass: "\\documentclass" class_options? "{" CLASS_NAME "}"
+class_options: "[" CLASS_OPTIONS_CONTENT "]"
+CLASS_OPTIONS_CONTENT: /[^\]]+/
+
+preamble_content: usepackage | generic_command | PREAMBLE_TEXT | NEWLINE
+usepackage: "\\usepackage" package_options? "{" PACKAGE_NAMES "}"
+package_options: "[" PACKAGE_OPTIONS_CONTENT "]"
+PACKAGE_OPTIONS_CONTENT: /[^\]]+/
+PACKAGE_NAMES: /[a-zA-Z0-9_,]+/
+generic_command: "\\" COMMAND_NAME command_args?
+command_args: "{" BRACE_CONTENT? "}"
+BRACE_CONTENT: /[^}]+/
+COMMAND_NAME: /[a-zA-Z]+\*?/
+PREAMBLE_TEXT: /[^\\%\n]+/
+NEWLINE: /[ \t]*\n/
+
+// Document body with schema
+document: "\\begin{document}" _WS? body _WS? "\\end{document}"
+
+// Body must contain our schema (whitespace allowed before/after)
+body: _WS? response _WS?
+
+// Task-specific schema
+response: "\\begin{response}" _WS? reasoning _WS? answer _WS? "\\end{response}"
+
+reasoning: "\\reasoning{" text "}"
+answer: "\\answer{" text "}"
+
+// Text content with support for nested braces (LaTeX commands like \frac{}{}, \text{}, \sqrt{})
+text: text_element+
+text_element: text_char | brace_group
+
+// Recursive brace group for LaTeX command arguments (handles nesting)
+brace_group: "{" brace_content? "}"
+brace_content: brace_element+
+brace_element: /[^{}\\]+/     // Regular text (no braces or backslash)
+             | escape_seq      // Escaped characters
+             | brace_group     // Nested braces (recursion)
+
+// Escape sequences
+escape_seq: "\\\\" | "\\{" | "\\}" | /\\./
+
+// Basic text characters (outside braces)
+text_char: /[^\\{}]+/         // Any sequence of non-special chars
+         | escape_seq          // Escaped characters
+
+// Terminals
+CLASS_NAME: /[a-zA-Z0-9_]+/
+_WS: /[ \t\n]+/

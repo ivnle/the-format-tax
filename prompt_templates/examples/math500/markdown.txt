@@ -1,0 +1,5 @@
+## Reasoning
+15 percent means 15 divided by 100, which is 0.15. Multiplying 0.15 by 80 gives 12.
+
+## Answer
+12

@@ -1,0 +1,21 @@
+{
+  "description": "JSON schema for MATH500 problems.",
+  "properties": {
+    "reasoning": {
+      "description": "Step-by-step reasoning to solve the problem",
+      "title": "Reasoning",
+      "type": "string"
+    },
+    "answer": {
+      "description": "Final answer to the problem",
+      "title": "Answer",
+      "type": "string"
+    }
+  },
+  "required": [
+    "reasoning",
+    "answer"
+  ],
+  "title": "Math500Schema",
+  "type": "object"
+}

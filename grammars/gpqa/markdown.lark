@@ -1,0 +1,20 @@
+// Markdown format for GPQA task
+// Structure: ## Reasoning\n...\n\n## Answer\nA|B|C|D
+
+start: reasoning_section _WS? answer_section _WS?
+
+reasoning_section: "## Reasoning" _WS? text
+answer_section: "## Answer" _WS? LETTER _WS?
+
+// Text content - lines that don't start with ## (section marker)
+text: line+
+line: /[^#\n][^\n]*\n?/      // Line starting with non-# char (trailing newline optional)
+    | /#[^#\n][^\n]*\n?/     // Line starting with single # (not ##)
+    | /#\n/                   // Just # on a line
+    | /\n/                    // Empty line
+
+// Single letter A-D
+LETTER: /[A-D]/
+
+// Whitespace
+_WS: /[ \t\n]+/

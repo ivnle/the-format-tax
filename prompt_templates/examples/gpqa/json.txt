@@ -1,0 +1,4 @@
+{
+  "reasoning": "Jupiter has by far the strongest magnetic field of any planet in the solar system, roughly 20,000 times stronger than Earth's.",
+  "answer": "B"
+}

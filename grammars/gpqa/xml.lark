@@ -1,0 +1,16 @@
+// XML format for GPQA task
+// Structure: <response><reasoning>...</reasoning><answer>A|B|C|D</answer></response>
+
+start: "<response>" _WS? reasoning _WS? answer _WS? "</response>" _WS?
+
+reasoning: "<reasoning>" text "</reasoning>"
+answer: "<answer>" LETTER "</answer>"
+
+// Text content (no < or > allowed)
+text: /[^<>]+/
+
+// Single letter A-D
+LETTER: /[A-D]/
+
+// Whitespace
+_WS: /[ \t\n]+/

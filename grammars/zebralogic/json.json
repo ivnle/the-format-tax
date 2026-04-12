@@ -1,0 +1,22 @@
+{
+  "description": "JSON schema for ZebraLogic problems.",
+  "properties": {
+    "reasoning": {
+      "description": "Step-by-step reasoning to solve the logic puzzle",
+      "title": "Reasoning",
+      "type": "string"
+    },
+    "answer": {
+      "description": "Single letter answer (A-F based on available choices)",
+      "pattern": "^[A-F]$",
+      "title": "Answer",
+      "type": "string"
+    }
+  },
+  "required": [
+    "reasoning",
+    "answer"
+  ],
+  "title": "ZebraLogicSchema",
+  "type": "object"
+}

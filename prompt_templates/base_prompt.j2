@@ -1,0 +1,45 @@
+{# Schema/format instructions #}
+{% if has_format_instructions is not defined %}
+{% set has_format_instructions = schema_type or show_freeform_hint or examples %}
+{% endif %}
+{% if has_format_instructions %}
+<format_instructions>
+{% block schema %}
+{% if schema_type == 'json' %}
+Your response must be valid JSON. The expected structure is defined by the following JSON Schema:
+
+```json
+{{ schema }}
+```
+
+Ensure your response is properly formatted JSON with all required fields.
+{% elif schema_type == 'lark' %}
+Your response must be valid {{ format_name }}.{% if grammar %} The expected structure is defined by the following Lark grammar:
+
+```lark
+{{ grammar }}
+```
+{% endif %}
+{% elif is_freeform and show_freeform_hint %}
+Provide step-by-step reasoning, then put your final answer{{ answer_hint }} in \boxed{}.
+{% endif %}
+{% endblock %}
+{% block few_shot %}
+{% if examples %}
+
+<examples>
+Here are examples of how to format your response:
+
+{% for ex in examples %}
+```{{ format_type or 'text' }}
+{{ ex }}
+```
+{% endfor %}
+</examples>
+{% endif %}
+{% endblock %}
+</format_instructions>
+{% endif %}
+
+{# Main content - overridden by child templates #}
+{% block content %}{% endblock %}
